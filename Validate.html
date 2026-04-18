@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Form</title>
+<style>
+    body {
+        font-family: Arial;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Contact Form</h2>
+    <form id="myForm">
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="phone" placeholder="Phone">
+        <textarea id="message" placeholder="Message"></textarea>
+        <div id="errorMsg" class="error"></div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let message = document.getElementById("message").value.trim();
+    let errorMsg = document.getElementById("errorMsg");
+
+    errorMsg.innerHTML = "";
+
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if (name === "" || email === "" || phone === "" || message === "") {
+        errorMsg.innerHTML = "All fields are required!";
+        return;
+    }
+
+    if (!email.match(emailPattern)) {
+        errorMsg.innerHTML = "Enter a valid email!";
+        return;
+    }
+
+    alert("Form submitted successfully!");
+});
+</script>
+
+</body>
+</html>
+Output:
+------------------------------
+|        Contact Form        |
+------------------------------
+| Name:    [______________]  |
+| Email:   [______________]  |
+| Phone:   [______________]  |
+| Message: [______________]  |
+|          [______________]  |
+|                            |
+|   (Submit Button)           |
+------------------------------
